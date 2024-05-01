@@ -1,631 +1,814 @@
 ### Metadata
 
 - Title:AWS re:Invent 2022 - From RDBMS to NoSQL (PRT314)
-
 - URL:https://www.youtube.com/watch?v=eEENrNKxCdw
 
+# **Introduction/Agenda**
 
+1. **Introduction**
+   * Speaker: Rick Houlihan, Director of Developer Relations for Strategic Accounts at MongoDB.
+   * Background: Former Worldwide Leader for NoSQL Services at AWS.
+   * Passion: NoSQL technology, believes it’s the future.
+2. **Focus of talk:** Understanding why to choose NoSQL technology.
+   * Amazon’s choice: Amazon chose a NoSQL-first mentality, not out of preference, but due to compelling reasons.
+3. **Amazon’s Decision Process**
+   * Process: Discussed the process Amazon went through to decide on NoSQL.
+   * Goal: To achieve ‘database freedom’.
+   * Challenge: Relational databases were seen as ‘chains that bind us’.
+4. **Data Modeling**
+   * Importance: Understanding data modeling is crucial to understanding why NoSQL is chosen over relational databases.
+   * Efficiency: Discusses efficiency, time complexity, and cost of infrastructure in data modeling.
+5. **Modeling Relationships in NoSQL**
+   * Breakdown: Plans to break down the math behind modeling relationships in NoSQL.
+   * Challenge: How to transition an organization with potentially thousands of developers to a new technology.
+6. **Amazon’s Transformation**
+   * Project ‘Rolling Stone’: **Managed the deprecation of 3000 Oracle server instances and migration of thousands of application services at Amazon.**
+   * Goal: Managed technology transformation at a global scale.
+7. **Differences in Modeling Applications**
+   * Focus: Differences between modeling an application in a NoSQL database versus a relational database.
+   * Developer Guidance: Helps developers find the path to start projects in new technology.
 
-### Notes
+- ([01:34](https://www.youtube.com/watch?v=eEENrNKxCdw&t=94s))
 
-- ([00:00](https://www.youtube.com/watch?v=eEENrNKxCdw&t=0s)) 
+![img](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/1df3364a-71e3-4d03-aea0-34a7e16a22d9.jpeg)
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/c83c1a96-7c84-4783-9918-3091d75eea05.jpeg)
+8. **Amazon’s Background**
+   * Misconception: Amazon was not born in the cloud, it was established in 1995, before the cloud existed.
+   * Amazon’s IT: **Amazon was a traditional IT organization, with many monolithic applications and services.**
+9. **Amazon’s Transition**
+   * Challenge: Transitioning from monolithic applications to a NoSQL backend was a significant process.
+   * Scale: **By 2018, Amazon had 3000 Oracle server instances** and was the largest Oracle license in the world.
+10. **Project ‘Rolling Stone’**
 
-- ([00:25](https://www.youtube.com/watch?v=eEENrNKxCdw&t=25s)) 
+* Mission: The initial goal of Project ‘Rolling Stone’ **was to replace Oracle, not necessarily the relational database.**
+* Scale: At the time, **Amazon had 10,000 application services and 25,000 to 30,000 developers globally.**
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/7e5138a3-0c59-4f7f-b2ab-ac75b75716a1.jpeg)
+11. **Cost of Relational Database**
 
-- ([00:43](https://www.youtube.com/watch?v=eEENrNKxCdw&t=43s)) 
+* Issue: **The cost of the relational database was a significant line item for Amazon.**
+  * High infrastructure TCO
+* Decision: The mission was to get off Oracle and find a better way to do things.
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/3ef231b0-e8cc-4b5b-9ebf-a3f3b27d3ff4.jpeg)
+12. **Breaking Up Monoliths**
 
-- ([00:59](https://www.youtube.com/watch?v=eEENrNKxCdw&t=59s)) 
+* Strategy: The initial idea was **to break up monoliths and move microservices into siloed deployments of RDS.**
+* Investigation: Something changed along the way when Verner started investigating things.
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/c19c123d-16f0-4f1e-a008-17cda645325d.jpeg)
+- ([04:52](https://www.youtube.com/watch?v=eEENrNKxCdw&t=292s))
 
-- ([01:19](https://www.youtube.com/watch?v=eEENrNKxCdw&t=79s)) 
+![img](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/9c21e279-d0f1-4467-9d91-0fdc4e7477ec.jpeg)
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/c8144fed-cfe1-4eff-9deb-4a2a20aa73d0.jpeg)
+13. **Data Processing History**
 
-- ([01:34](https://www.youtube.com/watch?v=eEENrNKxCdw&t=94s)) 
+* Data pressure: The system’s ability to process data at a reasonable cost and time.
+* Technology trigger: When data pressure breaks, new technology is invented.
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/1df3364a-71e3-4d03-aea0-34a7e16a22d9.jpeg)
+- ([06:25](https://www.youtube.com/watch?v=eEENrNKxCdw&t=385s))
 
-- ([02:02](https://www.youtube.com/watch?v=eEENrNKxCdw&t=122s)) 
+![img](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/612a617c-e630-44fa-a09d-c79fda79c929.jpeg)
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/52b65a10-add3-4544-844d-591297d55601.jpeg)
+14. **Database Evolution**
 
-- ([02:29](https://www.youtube.com/watch?v=eEENrNKxCdw&t=149s)) 
+* Early databases: Ledger accounting system, machine-readable punch card, and punch card sorting machine.
+* Relational database: Introduced by Edgar Cod around 1980, it was initially believed to be unsuitable for transactional applications.
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/ec3213c2-b45e-4b81-8f2a-d97b22f5c839.jpeg)
+15. **Moore’s Law**
 
-- ([02:52](https://www.youtube.com/watch?v=eEENrNKxCdw&t=172s)) 
+* Impact: Balanced the checkbook for relational databases, making their inefficiencies less noticeable.
+* Breakdown: Since 2014, top 500 supercomputing clusters have not been able to meet Moore’s Law performance predictions.
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/77fe6a54-6f83-49c2-a3fc-4ab5c6097731.jpeg)
+16. **Financial Equation**
 
-- ([03:17](https://www.youtube.com/watch?v=eEENrNKxCdw&t=197s)) 
+* Moore’s Law: The industry’s willingness to spend to double the transistor density in the CPU every two years.
+* Broken Moore’s Law: There’s no ROI for server processing manufacturers to go down to five nanometer fab.
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/21c78cd6-d3a4-43d9-8888-f53637feba12.jpeg)
+17. **Cost Problem**
 
-- ([03:45](https://www.youtube.com/watch?v=eEENrNKxCdw&t=225s)) 
+* Storage cost: Continues to fall, making databases that don’t require complex JOINs more cost-effective.
+* Over normalization: Common practice today, it burns CPU cycles and increases infrastructure cost.
+* 
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/e48b2a0d-ae01-455d-afe2-bc684a883e77.jpeg)
+- ([09:11](https://www.youtube.com/watch?v=eEENrNKxCdw&t=551s))
 
-- ([04:13](https://www.youtube.com/watch?v=eEENrNKxCdw&t=253s)) 
+![img](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/2ab0549e-2f49-4474-97ef-e8f860e969a4.jpeg)
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/47879535-452a-4085-9cdb-1df7d4f836cb.jpeg)
+- ([11:16](https://www.youtube.com/watch?v=eEENrNKxCdw&t=676s))
 
-- ([04:33](https://www.youtube.com/watch?v=eEENrNKxCdw&t=273s)) 
+![img](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/475d996b-0988-4fff-ac60-415444e4fec6.jpeg)
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/03ceac1f-04bc-4cc6-b17c-bdc073319991.jpeg)
+18. **When NoSQL**
 
-- ([04:52](https://www.youtube.com/watch?v=eEENrNKxCdw&t=292s)) 
+* Efficiency: **Increasing the efficiency of the CPU for common queries can dramatically improve the cost profile of the infrastructure.**
+* OLAP workload: Previously better suited for a relational database, now there’s a shift towards NoSQL.
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/5f6f7fe5-8ea9-4102-86ce-08eeefacebe6.jpeg)
+19. **NoSQL Databases**
 
-- ([04:52](https://www.youtube.com/watch?v=eEENrNKxCdw&t=292s)) 
+* NoSQL databases are not really NoSQL, they’re no RDBMS.
+* Many NoSQL databases have SQL read APIs that handle analytics queries.
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/9c21e279-d0f1-4467-9d91-0fdc4e7477ec.jpeg)
+20. **OLAP Workloads**
 
-- ([05:12](https://www.youtube.com/watch?v=eEENrNKxCdw&t=312s)) 
+* OLAP workloads do not run at high velocity.
+* **Users running OLAP queries typically do not care if the query comes back in a hundred milliseconds or 10 milliseconds.**
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/7321d339-111b-4e45-a529-fdb6d581b5f0.jpeg)
+21. **Transactional Applications**
 
-- ([05:28](https://www.youtube.com/watch?v=eEENrNKxCdw&t=328s)) 
+* **Transactional applications run at a very high frequency and run the same queries all the time.**
+* Increasing the efficiency of the CPU for common queries can dramatically improve the cost profile of the infrastructure.
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/5bd090c5-abd7-4112-b2ab-4b888ecd6b76.jpeg)
+22. **Over Normalization**
 
-- ([05:49](https://www.youtube.com/watch?v=eEENrNKxCdw&t=349s)) 
+* Over normalization is a common practice today.
+* Every time you JOIN a table in an SQL database, you’re burning CPU cycles and paying for infrastructure you don’t need.
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/72feffe3-209a-418c-9f10-060000143bd8.jpeg)
+23. **When NoSQL**
 
-- ([06:06](https://www.youtube.com/watch?v=eEENrNKxCdw&t=366s)) 
+* There used to be a line between OLAP workload and NoSQL databases.
+* OLAP workload that requires ad hoc queries was better suited for a relational database. Now, there’s a shift towards NoSQL.
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/d76009d3-2618-49e1-b614-9c98ce38f347.jpeg)
+- ([12:24](https://www.youtube.com/watch?v=eEENrNKxCdw&t=744s))
 
-- ([06:25](https://www.youtube.com/watch?v=eEENrNKxCdw&t=385s)) 
+![img](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/2457e053-aca6-41b5-a8e5-255600ac7e47.jpeg)
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/612a617c-e630-44fa-a09d-c79fda79c929.jpeg)
-
-- ([06:48](https://www.youtube.com/watch?v=eEENrNKxCdw&t=408s)) 
-
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/5faa9d11-b67f-427a-b40a-560ea3faa0b1.jpeg)
-
-- ([07:09](https://www.youtube.com/watch?v=eEENrNKxCdw&t=429s)) 
-
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/256b28b6-9bfe-46f6-9d4f-adc26930dfcd.jpeg)
-
-- ([07:25](https://www.youtube.com/watch?v=eEENrNKxCdw&t=445s)) 
-
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/ae37ec39-68cd-45fc-b260-a5427e21a428.jpeg)
-
-- ([07:41](https://www.youtube.com/watch?v=eEENrNKxCdw&t=461s)) 
-
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/06ca8adb-cb9d-413b-b456-f1792c981d18.jpeg)
-
-- ([08:01](https://www.youtube.com/watch?v=eEENrNKxCdw&t=481s)) 
-
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/e0af9d10-70c2-4d03-86cd-1ae82ec96ed1.jpeg)
-
-- ([08:21](https://www.youtube.com/watch?v=eEENrNKxCdw&t=501s)) 
-
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/a5bd30d7-749c-44c4-bf62-97175d8cac2a.jpeg)
-
-- ([08:52](https://www.youtube.com/watch?v=eEENrNKxCdw&t=532s)) 
-
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/8c2ee241-0178-4b74-bcc2-3d4c54780afd.jpeg)
-
-- ([09:11](https://www.youtube.com/watch?v=eEENrNKxCdw&t=551s)) 
-
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/2ab0549e-2f49-4474-97ef-e8f860e969a4.jpeg)
-
-- ([09:32](https://www.youtube.com/watch?v=eEENrNKxCdw&t=572s)) 
-
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/a5ba2666-844e-4335-bff1-c81e75d837d1.jpeg)
-
-- ([09:52](https://www.youtube.com/watch?v=eEENrNKxCdw&t=592s)) 
-
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/1961f784-14c9-4d27-813c-cc3c7e8501cd.jpeg)
-
-- ([10:21](https://www.youtube.com/watch?v=eEENrNKxCdw&t=621s)) 
-
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/13818350-be22-4659-8de6-329ffd1f61b2.jpeg)
-
-- ([10:46](https://www.youtube.com/watch?v=eEENrNKxCdw&t=646s)) 
-
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/670d23d8-8d31-4b89-9fc5-27c3f82b980e.jpeg)
-
-- ([11:16](https://www.youtube.com/watch?v=eEENrNKxCdw&t=676s)) 
-
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/475d996b-0988-4fff-ac60-415444e4fec6.jpeg)
-
-- ([11:39](https://www.youtube.com/watch?v=eEENrNKxCdw&t=699s)) 
-
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/f9b2e211-beaa-4461-b834-4d1436d9adf5.jpeg)
-
-- ([12:00](https://www.youtube.com/watch?v=eEENrNKxCdw&t=720s)) 
-
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/aad86f7b-361d-4854-8f69-ca9ff8a131d9.jpeg)
-
-- ([12:24](https://www.youtube.com/watch?v=eEENrNKxCdw&t=744s)) 
-
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/2457e053-aca6-41b5-a8e5-255600ac7e47.jpeg)
-
-- ([12:43](https://www.youtube.com/watch?v=eEENrNKxCdw&t=763s)) 
-
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/5096bf73-3b1e-44f5-b5f3-a429679d81f5.jpeg)
-
-- ([13:00](https://www.youtube.com/watch?v=eEENrNKxCdw&t=780s)) 
-
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/24e75dd8-819f-4125-884d-4685132655b7.jpeg)
-
-- ([13:16](https://www.youtube.com/watch?v=eEENrNKxCdw&t=796s)) 
+- ([13:16](https://www.youtube.com/watch?v=eEENrNKxCdw&t=796s))
 
 ![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/098688f0-6c7f-4a08-abd7-ef1c0ce808ae.jpeg)
 
-- ([13:33](https://www.youtube.com/watch?v=eEENrNKxCdw&t=813s)) 
+# Relational Data
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/8adf97a9-119f-430a-9cbc-8af111c15476.jpeg)
+25. **Relational Data**
 
-- ([13:47](https://www.youtube.com/watch?v=eEENrNKxCdw&t=827s)) 
+* Every bit of data that we store is relational.
+* Non-relational data is the data on the hard drive before you format it, the static in the air between the radio channels, and the noise between the stars.
+* The records associated with a customer or the history of an order are examples of relational data.
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/c6facd6b-daa3-4bec-b94d-1db30a4311e7.jpeg)
+- ([13:33](https://www.youtube.com/watch?v=eEENrNKxCdw&t=813s))
 
-- ([14:07](https://www.youtube.com/watch?v=eEENrNKxCdw&t=847s)) 
+![img](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/8adf97a9-119f-430a-9cbc-8af111c15476.jpeg)
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/a19e515b-8128-409e-9e7f-b5a116cb6496.jpeg)
+25. **Access Patterns**
 
-- ([14:30](https://www.youtube.com/watch?v=eEENrNKxCdw&t=870s)) 
+* Access patterns are what drives cost in the relational database.
+* 70% of the access patterns across all services were for a single row of data on a single table.
+* Another 20% were for a range of rows on a single table.
+* OLAP access patterns are very write heavy, not read heavy.
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/8d514a51-7343-49b3-9c1c-646bdf0ff9bc.jpeg)
+26. **Infrastructure**
 
-- ([14:51](https://www.youtube.com/watch?v=eEENrNKxCdw&t=891s)) 
+* When mapping workloads into a NoSQL database with a relational data model, it became apparent that 50% of the infrastructure was there just to support the other 10% of those access patterns.
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/8c3f8a48-2416-4311-9831-5709abb47428.jpeg)
+27. **OLAP Access Patterns**
 
-- ([15:15](https://www.youtube.com/watch?v=eEENrNKxCdw&t=915s)) 
+* OLAP access patterns are very write heavy, not read heavy.
+* Writes are always affecting a row or a range of rows or updates, they’re inserts updates.
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/cd3b7693-038c-4083-874d-96e71ae99b02.jpeg)
+28. **Infrastructure**
 
-- ([15:30](https://www.youtube.com/watch?v=eEENrNKxCdw&t=930s)) 
+* 50% of the infrastructure was there just to support the other 10% of those access patterns.
+* When JOINing tables in the application layer, the cost becomes apparent.
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/23ae6325-0660-41dc-bf7c-6afafdb44dc9.jpeg)
+- ([14:07](https://www.youtube.com/watch?v=eEENrNKxCdw&t=847s))
 
-- ([15:46](https://www.youtube.com/watch?v=eEENrNKxCdw&t=946s)) 
+![img](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/a19e515b-8128-409e-9e7f-b5a116cb6496.jpeg)
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/fb8e1272-bf2b-4c58-828b-ee3ae53b967a.jpeg)
+# SQL Vs NoSQL patterns
 
-- ([16:01](https://www.youtube.com/watch?v=eEENrNKxCdw&t=961s)) 
+29. **Data Model**
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/d3f44117-b4f7-4f58-8a08-7d83c0a2674b.jpeg)
+* Storing data in multiple places is not efficient.
+* A normalized relational model for a simple product catalog includes products, books, albums, and videos with one-to-one, one-to-many, and many-to-many relationships.
 
-- ([16:17](https://www.youtube.com/watch?v=eEENrNKxCdw&t=977s)) 
+30. **Access Patterns**
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/4c4fe97f-0b7c-42b2-baab-824acb53af2d.jpeg)
+* Access patterns are all product centric.
+  * Eventually, what's gonna end up happening here, if you think about the access patterns, they're all product centric. Get me the information for this product. Get me a product by ID, get me the product by category. Get me products by, you know, price that have these, you know, attributes, whatever, everything's product centric.
+* A cache might be put in front of the database to cache the product query, adding another layer of complexity.
+  * So you know, the reality is you'll probably end up putting a cache in front of this database to cache the product query so you don't have to compute the result off of these tables every single time. And, but what's that do for you?
+  * That just adds another layer of complexity, right? And then I have to worry about **cache validation and all that kind of stuff, or invalidation**, whatnot.
 
-- ([16:35](https://www.youtube.com/watch?v=eEENrNKxCdw&t=995s)) 
+- ([15:30](https://www.youtube.com/watch?v=eEENrNKxCdw&t=930s))
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/d434efc4-5a19-4f2c-ba4d-db00f63c7692.jpeg)
+![img](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/23ae6325-0660-41dc-bf7c-6afafdb44dc9.jpeg)
 
-- ([17:01](https://www.youtube.com/watch?v=eEENrNKxCdw&t=1021s)) 
+31. **Efficiency**
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/12e9582f-3910-4754-8e1e-ba77038a861a.jpeg)
+* If the CPUs hopping all over these tables to assemble the view, it’s not efficient.
+* Collapsing all rows into an embedded document structure might be a better approach for product centric access patterns.
 
-- ([17:16](https://www.youtube.com/watch?v=eEENrNKxCdw&t=1036s)) 
+32. **Updates**
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/ee876d10-7e18-4a6e-a78e-d5c3d156d14b.jpeg)
+* **Product information updates are infrequent.**
+  * 99% of my access pattern is gonna be reads by product ID or type or whatnot. I want the JOIN data, okay? Every now and then, product information updates.
+  *  **So what, my write's gonna be a little expensive, but that's the infrequent pattern.** 
+* **Optimizing for the high frequency pattern, not the low frequency pattern, is preferred.**
 
-- ([17:36](https://www.youtube.com/watch?v=eEENrNKxCdw&t=1056s)) 
+33. **Data Model Limitations**
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/6c8895f3-eb04-4c5d-9a9b-6bc64be6b992.jpeg)
+* Oversimplifying the data model can be **problematic if individual data/rows update frequently.**
+  * If you think like order history, orders have items, they have shipments and invoices and payments and whatnot, and all that stuff might get updated independently of each other.
+  * I don't wanna read the whole document every time I need to update a single item within it. This was one of the big problems we found at Amazon was he can't oversimplify the data model like this in all cases.
+* In some cases, such as a product catalog, simplifying the data model works really well.
 
-- ([17:53](https://www.youtube.com/watch?v=eEENrNKxCdw&t=1073s)) 
+- ([17:01](https://www.youtube.com/watch?v=eEENrNKxCdw&t=1021s))
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/7c720946-4137-4ebe-ac8f-742e0568a3a4.jpeg)
+![img](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/12e9582f-3910-4754-8e1e-ba77038a861a.jpeg)
 
-- ([18:11](https://www.youtube.com/watch?v=eEENrNKxCdw&t=1091s)) 
+34. **Efficiency**
+
+* CPUs hopping all over tables to assemble the view is not efficient.
+* Collapsing all rows into an embedded document structure might be a better approach for product centric access patterns.
+
+35. **Access Patterns**
+
+* 99% of the access pattern is reads by product ID or type.
+* The infrequent pattern is product information updates, which makes writes a bit expensive.
+
+36. **Pre-JOIN Data**
+
+* Pre-JOIN data is preferred in this case.
+* This works well in some use cases but can be problematic if individual rows update frequently.
+
+37. **Data Model**
+
+* Oversimplifying the data model can be problematic, especially if individual rows update frequently.
+* In some cases, such as a product catalog, simplifying the data model works really well.
+
+38. **Time Complexity**
+
+* Time complexity becomes apparent when looking at JOINs.
+* One-to-one JOIN is not too bad, one-to-many JOINs start to get worse, and many-to-many JOINs are even more complex.
+
+39. **CPU Efficiency**
+
+* CPUs have gotten so efficient over the years that the time complexity of queries hasn’t been a big deal.
+* However, as CPUs age, the time complexity starts to hurt.
+
+40. **Current Reality**
+
+* These days, the preference is to avoid complex JOINs and time-consuming queries.
+
+# Time Complexity
+
+- ([18:03](https://www.youtube.com/watch?v=eEENrNKxCdw&t=1083s))
+- Time complexity down below one-to-one JOIN, not too bad, okay? One-to-many JOINs starts to get a little worse.
+
+![img](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/c36436f9-8133-4f59-a624-a85b9825522f.jpeg)
+
+- ([18:11](https://www.youtube.com/watch?v=eEENrNKxCdw&t=1091s))
 
 ![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/5cc392ad-9bdc-4bf5-9242-c276d6bae829.jpeg)
 
-- ([18:28](https://www.youtube.com/watch?v=eEENrNKxCdw&t=1108s)) 
+- ([18:28](https://www.youtube.com/watch?v=eEENrNKxCdw&t=1108s))
+- Time complexity down below one-to-one JOIN, not too bad, okay? One-to-many JOINs starts to get a little worse.
+- And so think what those time complexity of those queries looks like. It's tremendous.
+- We never notice it because the CPUs have gotten so efficient over the years, it hasn't been a big deal, and CPU efficiency has just continually increased over and over and over again.
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/5c9ae2d8-5040-49be-aeb9-9a5fa144cb31.jpeg)
+![img](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/5c9ae2d8-5040-49be-aeb9-9a5fa144cb31.jpeg)
 
-- ([18:46](https://www.youtube.com/watch?v=eEENrNKxCdw&t=1126s)) 
+# Model Joins in NoSQL
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/67cd99b9-0b75-4c0e-a4f3-6105c4bbbd3e.jpeg)
+41. 
+42. **Model JOINs**
 
-- ([19:12](https://www.youtube.com/watch?v=eEENrNKxCdw&t=1152s)) 
+* Model JOINs and aspects of NoSQL can be interesting.
+* A basic document structure that describes a product is taken as an example.
+* The product has attributes that describe it inside the data object.
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/f30d3f08-16e1-4537-b3bf-4af286b5fb80.jpeg)
+43. **Data Objects**
 
-- ([19:26](https://www.youtube.com/watch?v=eEENrNKxCdw&t=1166s)) 
+* Data objects are the stuff that describes the product but are not cared about from a querying perspective.
+* Data always needs objects and needs to be related to each other.
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/2436e34b-0fc2-49bb-92ca-7d0b70f13512.jpeg)
+44. **Access Patterns**
 
-- ([19:41](https://www.youtube.com/watch?v=eEENrNKxCdw&t=1181s)) 
+* There are many access patterns besides getting a product by ID.
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/41d97327-9346-4ef0-90ec-c1fe9307a004.jpeg)
+# MultiKey indexing - Critical concept
 
-- ([20:02](https://www.youtube.com/watch?v=eEENrNKxCdw&t=1202s)) 
+* **In a document database like MongoDB that supports multi-key indexing, relationships between the documents can be expressed as an array of pointers within the document itself.**
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/8c04046f-3cc9-4a07-a92f-d0d66434e0b7.jpeg)
+47. **Adjacency List**
 
-- ([20:19](https://www.youtube.com/watch?v=eEENrNKxCdw&t=1219s)) 
+* An adjacency list or a graph is created using a target array that tells what all a thing is related to.
+* The target array rows are **like the rows from the mapping table in the relational model or the edges in the graph database.**
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/9fa376b3-f0b9-4644-9202-05a748001b98.jpeg)
+46. **Time Complexity**
 
-- ([20:35](https://www.youtube.com/watch?v=eEENrNKxCdw&t=1235s)) 
+* The time complexity of going through these base documents is O(log(N)).
+* These are key-value access patterns and all these access patterns are O(log(N)).
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/d42b2833-7ed1-4da5-93db-130038d43a23.jpeg)
+47. **Adding Additional Objects**
 
-- ([20:54](https://www.youtube.com/watch?v=eEENrNKxCdw&t=1254s)) 
+* It gets more interesting when additional objects like directors, actors, song documents, etc., are added that describe everything that these things are related to.
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/018bf35f-2ba8-49c1-b64d-15095d6d28eb.jpeg)
+# Key-value access patterns
 
-- ([20:54](https://www.youtube.com/watch?v=eEENrNKxCdw&t=1254s)) 
+- ([19:12](https://www.youtube.com/watch?v=eEENrNKxCdw&t=1152s))
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/cd1ad21f-ccf9-4f3a-9ae5-555be77735bb.jpeg)
+![img](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/f30d3f08-16e1-4537-b3bf-4af286b5fb80.jpeg)
 
-- ([21:08](https://www.youtube.com/watch?v=eEENrNKxCdw&t=1268s)) 
+- ([20:35](https://www.youtube.com/watch?v=eEENrNKxCdw&t=1235s))
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/decb59dd-2c80-4183-bddc-909f6e1fccfd.jpeg)
+![img](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/d42b2833-7ed1-4da5-93db-130038d43a23.jpeg)
 
-- ([21:31](https://www.youtube.com/watch?v=eEENrNKxCdw&t=1291s)) 
+- ([21:31](https://www.youtube.com/watch?v=eEENrNKxCdw&t=1291s))
 
 ![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/26bc8e7a-0116-4b56-9f92-394bc18e6d52.jpeg)
 
-- ([21:59](https://www.youtube.com/watch?v=eEENrNKxCdw&t=1319s)) 
+# Index Joins in NoSQL
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/a96dd88b-971d-4ce4-b1d5-5c7124cfaf78.jpeg)
+48. **Target Arrays**
 
-- ([22:27](https://www.youtube.com/watch?v=eEENrNKxCdw&t=1347s)) 
+* Every document has target arrays that tell what they’re related to.
+* When you index the target array in a multikey index, it essentially becomes a lookup index on that target array.
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/8f050f1d-a870-4f39-92bf-f94780fa25eb.jpeg)
+49. **JOINs**
 
-- ([22:46](https://www.youtube.com/watch?v=eEENrNKxCdw&t=1366s)) 
+* If you think about what the relational database does at its core, **when things are configured properly for high velocity reads, it's gonna take two indexes, one on table A, one on table B,** and it's gonna merge them, On a shared attribute.
+* If all documents are put in a single container and indexed on a shared attribute, they’re already JOINed, **eliminating the need to merge indexes.**
+  * So now when I want to get all the books by an author, I can select by Target ID is Mary Shelly. I get every book that she wrote, I'll get every person she's related to,
+  * anything in this adjacency list that has a relationship to this person will show up by selecting where the target ID is the author.
+* Similarly, selecting my song Id brings back all the albums that the song appeared on, all the musicians that performed at the studio that recorded it. Whatever I need to retrieve, I can have any number of access patterns now on a large number of dimensions and the neatest thing about this, I haven't de-normalized any of the real data.
+
+- ([21:59](https://www.youtube.com/watch?v=eEENrNKxCdw&t=1319s))
+
+![img](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/a96dd88b-971d-4ce4-b1d5-5c7124cfaf78.jpeg)
+
+- ([22:46](https://www.youtube.com/watch?v=eEENrNKxCdw&t=1366s))
 
 ![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/42b079be-55ea-48b3-ba8a-b0fd7cfb9327.jpeg)
 
-- ([23:11](https://www.youtube.com/watch?v=eEENrNKxCdw&t=1391s)) 
+- ([23:11](https://www.youtube.com/watch?v=eEENrNKxCdw&t=1391s))
 
 ![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/e4bb41d7-2054-47a6-a2c9-037d67cfa83c.jpeg)
 
-- ([23:37](https://www.youtube.com/watch?v=eEENrNKxCdw&t=1417s)) 
+- ([23:37](https://www.youtube.com/watch?v=eEENrNKxCdw&t=1417s))
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/015860e9-50df-42ff-bb1e-5282ada34051.jpeg)
+![img](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/015860e9-50df-42ff-bb1e-5282ada34051.jpeg)
 
-- ([23:52](https://www.youtube.com/watch?v=eEENrNKxCdw&t=1432s)) 
+# Solution
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/d09182e5-698f-4b58-8c47-43fb0399800a.jpeg)
+50. **Access Patterns**
 
-- ([24:10](https://www.youtube.com/watch?v=eEENrNKxCdw&t=1450s)) 
+* You can have any number of access patterns on a large number of dimensions.
+* **The data is not de-normalized, only the pointers are.**
+* There are no mapping tables anymore (for many to many relationships), and the multikey index keeps track of all data duplication.
+  * The mapping table kind of gets de-normalized across the objects here. But the **multi key index keeps track of all of that data duplication that would be required if I didn't have that feature,** right?
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/7bd161ad-bdec-4c2d-9ef3-7155fa8f8704.jpeg)
+51. **Efficiency**
 
-- ([24:33](https://www.youtube.com/watch?v=eEENrNKxCdw&t=1473s)) 
+* One of the key features of the document database is the ability to **express relationships extremely efficiently using these data structures.**
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/aeed4cdd-f7bb-47b9-a808-9df94a07ec05.jpeg)
+52. **Time Complexity**
 
-- ([24:54](https://www.youtube.com/watch?v=eEENrNKxCdw&t=1494s)) 
+* Basically all those documents return in that query. And it's one round trip to the database.
+* The time complexity of the JOIN in this particular query is O(log(N)), which translates to a massive amount of infrastructure reduction.
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/7c401b03-4a85-463b-b6c6-ae47aac84270.jpeg)
+53. **Optimization**
 
-- ([25:12](https://www.youtube.com/watch?v=eEENrNKxCdw&t=1512s)) 
+* **Developers spend a lot of time optimizing their code to reduce time complexity**.
+* **If you’re not optimizing the data model and not worried about your access patterns, you’re building a wobbly tower of technology.**
+  * You're not building an application because if you're handing off to an ORM, it's gonna do really ugly things. Okay?
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/68bbcb6f-374a-4f66-a0da-4a4ced30fac6.jpeg)
+54. **Solution**
 
-- ([25:35](https://www.youtube.com/watch?v=eEENrNKxCdw&t=1535s)) 
+1. **It’s best to pay attention to your access patterns,**
+1. **create pre-JOIN data structures,**
+1. **leverage multikey indexing, and**
+1. **reduce the time complexity of your high-velocity queries.**
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/3fc8687c-9948-449c-b65d-43e9c5a4f16b.jpeg)
+55. **Access Patterns at Amazon**
 
-- ([25:54](https://www.youtube.com/watch?v=eEENrNKxCdw&t=1554s)) 
+* 90% of the access patterns at Amazon are for a **single table, a single row, or a range of rows on that table. They're working with small bits and pieces of data**
+* The 10% that JOIN everything are the ones where the infrastructure cost is felt.
+* So if I can **reduce the time complexity of those JOIN**s and **maintain the cost efficiency of updating small items,** then I'm gonna have a win-win all the way around.
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/f57cde14-72e9-482a-b422-d228382563e7.jpeg)
+56. **Document Database**
 
-- ([26:06](https://www.youtube.com/watch?v=eEENrNKxCdw&t=1566s)) 
+* **The document database is a vastly superior solution** because it reduces the time complexity of JOINs and maintains the cost efficiency of updating small items.
+* MongoDB does all these updates across all these partitions on the table for you.
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/120bdc21-4799-473f-977e-17dde529d435.jpeg)
+# NoSQL adoption
 
-- ([26:25](https://www.youtube.com/watch?v=eEENrNKxCdw&t=1585s)) 
+57. **Developer Relations**
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/f72370ea-3e19-4596-bff8-579e1c627e45.jpeg)
+* There are two sides to developer relations: advocacy and enablement.
+* Advocacy involves talking about the technology, while enablement is about teaching how to solve problems with it.
 
-- ([26:38](https://www.youtube.com/watch?v=eEENrNKxCdw&t=1598s)) 
+- ([25:35](https://www.youtube.com/watch?v=eEENrNKxCdw&t=1535s))
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/fd77768e-20cc-47fe-9e1b-4be13a7adab4.jpeg)
+![img](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/3fc8687c-9948-449c-b65d-43e9c5a4f16b.jpeg)
 
-- ([26:53](https://www.youtube.com/watch?v=eEENrNKxCdw&t=1613s)) 
+58. **Technology Transformation**
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/b4f71e9d-8dc0-4d83-acb4-2df7eaeb38ea.jpeg)
+* **Success in a technology transformation is about getting to the early majority in the technology adoption curve.**
+* The early majority indicates that the ecosystem knows what they’re doing.
 
-- ([27:09](https://www.youtube.com/watch?v=eEENrNKxCdw&t=1629s)) 
+59. **Data Pressure**
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/48fb1390-70fd-4653-b158-38b74a37ae36.jpeg)
+* **Data pressure is a technology trigger in the space.**
+* Many people face the **problem of expensive relational databases and think NoSQL will solve that problem.**
 
-- ([27:31](https://www.youtube.com/watch?v=eEENrNKxCdw&t=1651s)) 
+60. **Misuse of NoSQL**
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/ccfd3301-8495-4949-b263-b4feed07bd8e.jpeg)
+* Misuse of NoSQL occurs when **people try to use it the same way they use old technology,** leading to a miserable experience.
+* **There is a lot of misinformation about how NoSQL works, and people often mistakenly try to use relational models in a NoSQL database.**
 
-- ([27:47](https://www.youtube.com/watch?v=eEENrNKxCdw&t=1667s)) 
+61. **Early Adopter Phase (2022)**
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/b5553edd-5d8f-4a1b-b891-6d5b56b648a9.jpeg)
+* We're still in that early adopter phase, right? Why? Because there is **so much misinformation out there about how NoSQL works** and people actually think that it's real.
+  * there's blog posts and there's all kinds of things to talk about using relational models in an NoSQL database. **It breaks everything. It makes it worse than the relational database. Do not use relational models in NOSQL DB.**
+* Understanding how NoSQL works leads to a better experience.
 
-- ([27:59](https://www.youtube.com/watch?v=eEENrNKxCdw&t=1679s)) 
+62. **Amazon’s Approach**
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/d2f18377-e8f3-45d2-8bda-9de0f969a9a8.jpeg)
+* Amazon prioritized getting their 25,000 developers up to speed as quickly as possible.
+* They used a process of evangelizing and using the technology, conducting workshops and hackathons.
 
-- ([28:18](https://www.youtube.com/watch?v=eEENrNKxCdw&t=1698s)) 
+- ([26:25](https://www.youtube.com/watch?v=eEENrNKxCdw&t=1585s))
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/8ea3f6cf-e46c-48e7-83f9-e90e7c57a443.jpeg)
+![img](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/f72370ea-3e19-4596-bff8-579e1c627e45.jpeg)
 
-- ([28:32](https://www.youtube.com/watch?v=eEENrNKxCdw&t=1712s)) 
+# Amazon shopping cart example
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/606c4c51-f00d-46eb-b610-3cd5d0e01044.jpeg)
+63. **Amazon Shopping Cart Team**
 
-- ([28:46](https://www.youtube.com/watch?v=eEENrNKxCdw&t=1726s)) 
+* The Amazon Shopping Cart team was one of the first teams to try the new technology.
+* They initially found it unworkable due to the cost of operations on the shopping cart data.
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/bbd92f56-f64e-421b-b8db-c6a0adfcc42f.jpeg)
+64. **Shopping Cart Use Case**
 
-- ([29:00](https://www.youtube.com/watch?v=eEENrNKxCdw&t=1740s)) 
+* The shopping cart is a complex use case with various operations on the data.
+  * It's an interesting use case because, you know, people add items to the shopping cart
+  * . They delete items a shopping cart, right?
+  * They may keep a shopping cart in the system for God knows how many weeks or months or whatever, and
+  * then come in and make an order and delete 40 items out of the cart.
+* Items in the shopping cart have their own lifecycle and are updated at different frequencies.
+  * Inside of Amazon, they might get shipped outta different fulfillment centers, right?
+  * They're updated at different frequencies, right?
+  * If you, when you check out, you'll see in the cart there's two different might deliver on this day or this day.
+  * It's like there's all kinds of operations occurring on the data that's in the shopping cart. And this was a real clue because those little items inside the shopping cart, each one of those things in DynamoDB, it was about each one of these is about a kilobyte.
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/3404627f-ff4b-4c5e-b8b4-f6839f6fc66f.jpeg)
+65. **DynamoDB Cost**
 
-- ([29:12](https://www.youtube.com/watch?v=eEENrNKxCdw&t=1752s)) 
+* DynamoDB charges based on the size of the item, which increases with each added item.
+  * DynamoDB is kind of merciless when it comes to cost. And the WCU is minimum of is, it was one kilobyte. And so if they added one item to the cart, it was a kilobyte
+* This led to high costs, especially for users who keep many items in their cart for extended periods.
+  * Now you get someone who has 12 items in the cart and then sits there and does that for three weeks, right? It becomes extremely expensive.
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/f691f6a2-17d3-47ba-ba8c-6ffafd08c812.jpeg)
+- ([29:30](https://www.youtube.com/watch?v=eEENrNKxCdw&t=1770s))
 
-- ([29:30](https://www.youtube.com/watch?v=eEENrNKxCdw&t=1770s)) 
+![img](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/8f148eea-bd0b-49f0-b95c-3e18db22e114.jpeg)
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/8f148eea-bd0b-49f0-b95c-3e18db22e114.jpeg)
+## Cost optimized Solution
 
-- ([29:52](https://www.youtube.com/watch?v=eEENrNKxCdw&t=1792s)) 
+67. **Solution**
+
+* The solution was to create a partition key (the shopping cart ID) and a sort key (the ASIN or SKU of the item) in DynamoDB.
+* This made every update to the cart an addition of an item into that partition, keeping the cost constant at one kilobyte.
+  * If you think of the partition, it's kind like an index,
+  * We basically loaded these objects into partitions and as we added and removed items, the WCU cost was constant. One kilobyte never more.
+  * They cut their cost by 80% when they ran their workload simulations, right?
+  * So all of a sudden it became an effective technology, right? So the key was that the team needed to learn how to use it, right?
+
+67. **Design Reviews**
+
+* The team started conducting design reviews with various teams to teach them how to use the technology.
+* These reviews helped teams understand how to model their data correctly for their workloads.
+
+- ([29:52](https://www.youtube.com/watch?v=eEENrNKxCdw&t=1792s))
 
 ![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/8220be29-4cfb-4d50-968c-a991bdbe3115.jpeg)
 
-- ([30:26](https://www.youtube.com/watch?v=eEENrNKxCdw&t=1826s)) 
+68. **MongoDB Day**
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/808204f2-6b40-4ae9-a518-b9fea028dc84.jpeg)
+* The speaker runs events called MongoDB Day (formerly DynamoDB Day), which are all about NoSQL.
+* These events involve advocacy sessions, deep dives into the technology, and exploration of data modeling.
 
-- ([30:43](https://www.youtube.com/watch?v=eEENrNKxCdw&t=1843s)) 
+69. **Tailored Engagements**
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/8d685745-9182-451e-be78-939e2c248c0b.jpeg)
+* The speaker executes tailored engagements throughout the year with strategic accounts.
+* These engagements involve understanding what the customers want to know about the technology and showing them how it works. The speaker emphasizes that he is not there to sell anything, but to educate.
+  * We'll do the half day engagements where we'll talk about the technology, dive deep on aggregation framework, the dive into the developer platform, whatnot. But the real meat for our customers is this exploration of data modeling, right?
 
-- ([30:59](https://www.youtube.com/watch?v=eEENrNKxCdw&t=1859s)) 
+- ([30:43](https://www.youtube.com/watch?v=eEENrNKxCdw&t=1843s))
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/e1c5afc5-7f10-401c-bc2d-12c9dd83589b.jpeg)
+![img](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/8d685745-9182-451e-be78-939e2c248c0b.jpeg)
 
-- ([31:26](https://www.youtube.com/watch?v=eEENrNKxCdw&t=1886s)) 
+# Thinking in documents
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/0f3fbaf0-e625-4175-8661-8663d4652c8d.jpeg)
+70. **Grace Hopper Quote**
 
-- ([31:41](https://www.youtube.com/watch?v=eEENrNKxCdw&t=1901s)) 
+* Rick Houlihan cites a quote by Grace Hopper: “One accurate measurement is worth a thousand expert opinions.” This quote is the cornerstone of his career.
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/e9570be2-6d77-47bd-b837-2b1cbf3be0dd.jpeg)
+71. **Schema Bench**
 
-- ([32:03](https://www.youtube.com/watch?v=eEENrNKxCdw&t=1923s)) 
+* His team has a tool called Schema Bench, which allows customers to configure different schema options and run their access patterns. It gathers P95 latency, average, mean, total throughput, etc.
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/ac76fa09-9496-407e-8a47-34425ce84def.jpeg)
+72. **NoSQL vs Relational Database**
 
-- ([32:24](https://www.youtube.com/watch?v=eEENrNKxCdw&t=1944s)) 
+* He argues that you can never configure a relational database to run faster or with higher throughput than NoSQL for the same workload.
+  * I can guarantee you you'll never be able to configure a relational database that has the word JOIN in that query and have it run faster or better or with higher throughput than I can the exact same workload with the exact same result in NoSQL
+  * If it's higher time complexity to run that query, it's just gonna take longer. It's gonna take more infrastructure, okay?
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/d7bc2148-95ee-4656-b2cf-f973d396d755.jpeg)
+73. **Thinking in Documents**
 
-- ([32:54](https://www.youtube.com/watch?v=eEENrNKxCdw&t=1974s)) 
+* when we want to start working with NoSQL, it's about thinking in documents and I even **wide, colum store, document database,** whatever, you can all, call it all, it's all documents, because everything supports a JSON type, nested data structures are just part of the business.
+* When working with NoSQL, it’s about thinking in documents, objects, or items. It’s important to understand the access patterns.
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/a0847f42-47ff-4f3a-a409-966e3dd298c2.jpeg)
+- ([33:22](https://www.youtube.com/watch?v=eEENrNKxCdw&t=2002s))
 
-- ([33:22](https://www.youtube.com/watch?v=eEENrNKxCdw&t=2002s)) 
+![img](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/218358ba-c514-4629-b323-867b102aff0c.jpeg)
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/218358ba-c514-4629-b323-867b102aff0c.jpeg)
+74. **Methodology**
 
-- ([33:44](https://www.youtube.com/watch?v=eEENrNKxCdw&t=2024s)) 
+* **The methodology followed is the same for any NoSQL database.** It’s about understanding the workload and the relationships.
+  * It doesn't matter if I'm DynamoDB, MongoDB, whatnot.
+  * I've got a lot more API feature functions with a MongoDB. I've got a lot more indexing options and flexibility. But the core data models are the same.
+  * **the bottom line is I need to understand the workload.**
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/1baa30c1-a8fc-4867-91ae-1cec9cb677ba.jpeg)
+75. **Design Patterns**
 
-- ([33:59](https://www.youtube.com/watch?v=eEENrNKxCdw&t=2039s)) 
+* There are many design patterns to apply based on the entity relationship diagrams. His team goes through the access patterns of their customers and decides what the documents should look like and what design patterns to apply.
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/d5a203dc-bd8b-4f34-b1e6-c9cd3814d098.jpeg)
+76. **Choosing Simplicity or Performance**
 
-- ([34:16](https://www.youtube.com/watch?v=eEENrNKxCdw&t=2056s)) 
+* There is always a choice between simplicity or performance. It’s important to understand what you’re modeling for.
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/118534e4-2d1f-4e2f-ad67-c0bf2da5fafb.jpeg)
+77. **Understanding the Nature of the Workload**
 
-- ([34:32](https://www.youtube.com/watch?v=eEENrNKxCdw&t=2072s)) 
+* It’s important to understand the nature of the workload you’re trying to model. If it’s a high velocity pattern, then you need to optimize for common patterns while accommodating corner case patterns.
+* If the workload doesn't really have any velocity and doesn't have any size, no need to spend much time in optimizing the data model, the thing that runs a couple times a day, fine, just use large embedded documents. Don't worry about how much those updates cost. It's not a big deal.
+* But if it's, you know, runs thousands of times a second, you know, then I care, okay then I'm gonna wanna make sure that those patterns are highly optimized. You know, for the particular use case that we're talking to. Once I understand the workload, it's about relationships, right? It's all about relationships.
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/c9bbb040-4c8c-47d8-b65b-0dc51d6efbb1.jpeg)
+Relationships and patterns
 
-- ([34:52](https://www.youtube.com/watch?v=eEENrNKxCdw&t=2092s)) 
+* **The logical entity relationship diagram is still important for using a NoSQL database.**
+* It is gonna define how we set up or structure the documents that we're using and what kind of patterns we're gonna apply, right?
+* There's a whole bunch of design patterns on MongoDB University
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/9c3f3d0e-14e8-49af-aaa1-ccde85527c97.jpeg)
+- ([34:52](https://www.youtube.com/watch?v=eEENrNKxCdw&t=2092s))
 
-- ([35:14](https://www.youtube.com/watch?v=eEENrNKxCdw&t=2114s)) 
+![img](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/9c3f3d0e-14e8-49af-aaa1-ccde85527c97.jpeg)
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/2a64052a-87cc-44ea-9961-de6e6f2018ba.jpeg)
+# Flexible methodology - choosing simplicity or performance
 
-- ([35:41](https://www.youtube.com/watch?v=eEENrNKxCdw&t=2141s)) 
+- This is the mantra of NoSQL data modeling, right? Optimize for the high frequency patterns, okay? Again, the ones that run thousands of times a second, those are the ones we care.
+- While accommodating those corner case patterns, the ones that are those operational analytics maybe that run once an hour, once a day, whatever. We don't really care about the efficiency of those queries, we just need to make sure we can support them.
+- ([35:41](https://www.youtube.com/watch?v=eEENrNKxCdw&t=2141s))
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/45f2cb26-b64f-4bcd-a815-2b81827d5159.jpeg)
+![img](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/45f2cb26-b64f-4bcd-a815-2b81827d5159.jpeg)
 
-- ([35:56](https://www.youtube.com/watch?v=eEENrNKxCdw&t=2156s)) 
+78. **Use Case**
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/2a8c008a-9c97-4353-8e4a-8c40b3fefe0e.jpeg)
+* **A common use case for NoSQL databases these days is in large enterprises** when people want a single view of the customer or data and eventually want to create a new system of record for some of these backend systems.
 
-- ([36:14](https://www.youtube.com/watch?v=eEENrNKxCdw&t=2174s)) 
+- ([37:11](https://www.youtube.com/watch?v=eEENrNKxCdw&t=2231s))
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/9f765501-fe4a-4b7c-90cf-3fd3ae5a5b44.jpeg)
+![img](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/62d5e4f3-04ab-4ac6-a14e-98d6faeaab37.jpeg)
 
-- ([36:29](https://www.youtube.com/watch?v=eEENrNKxCdw&t=2189s)) 
+# Mongo insurance portal use case
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/2ea2d103-513b-4c07-88ef-dd5a4d398c09.jpeg)
 
-- ([36:48](https://www.youtube.com/watch?v=eEENrNKxCdw&t=2208s)) 
+79. **Insurance Company Use Case**
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/934beb3b-ac4a-40fd-b47e-a5bde203b188.jpeg)
+* He presents a use case of an insurance company built through acquisition with many backend systems.
+* The company wants to merge all data from these systems into an online portal for a better user experience.
+  * to avoid miserable customer experience, customer logs in the online portal, takes 45-60 seconds to go hit all these backend systems and get all the data and figure out who they are and everything. What they really want is they wanna merge all that data from those legacy systems into an online portal that gives 'em a much better user experience,
+* This portal will be a read-only copy of the data.
+  * just updates coming in from the backend that are, you know, being applied in batches throughout the day, but maybe eventually it'll be the future base of the customer portal, right?
 
-- ([37:11](https://www.youtube.com/watch?v=eEENrNKxCdw&t=2231s)) 
+80. **Offloading Mainframes**
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/62d5e4f3-04ab-4ac6-a14e-98d6faeaab37.jpeg)
+* Offloading a lot of the read velocity from the backend mainframes can breathe life into those systems by **giving them more overhead to handle additional writes.** This works both ways **to help the mainframe as well as the customer.**
+* But the idea here is kind of read only cache offload those mainframes.
+* 
 
-- ([37:36](https://www.youtube.com/watch?v=eEENrNKxCdw&t=2256s)) 
+- ([37:53](https://www.youtube.com/watch?v=eEENrNKxCdw&t=2273s))
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/b4cf80f9-f72e-4891-89c5-519f1aa71ad8.jpeg)
+![img](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/8c0c782c-e641-43bb-9878-0863229a6d00.jpeg)
 
-- ([37:53](https://www.youtube.com/watch?v=eEENrNKxCdw&t=2273s)) 
+## Workload analysis
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/8c0c782c-e641-43bb-9878-0863229a6d00.jpeg)
+81. **Understanding the Workload**
 
-- ([38:10](https://www.youtube.com/watch?v=eEENrNKxCdw&t=2290s)) 
+* The first step in the process is to understand the workload and identify the access patterns.
+* **If you don’t know what your access patterns are, you should be writing user stories, not code. User stories define your access patterns.**
+* And if you don't have any of those, then why are we writing code? Okay? So **code includes the query, the query is the access pattern,** right? So as soon as I write a line of code that contains a query, I've defined an access pattern, we can start talking about the data model. So let's do it and let's do it up front
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/6cfbbd12-231a-47b3-bcbf-deb8d9a65223.jpeg)
+82. **Access Patterns**
 
-- ([38:29](https://www.youtube.com/watch?v=eEENrNKxCdw&t=2309s)) 
+* In this case, there are four patterns to care about:
+  * changes coming into the Mongo insurance portal from the backend systems,
+  * loading user profile,
+  * loading the overview of the account, and
+  * loading the details of the artifact.
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/e3324b7a-672c-4626-b079-fe7f1856573b.jpeg)
+83. **Velocity of Queries**
 
-- ([38:50](https://www.youtube.com/watch?v=eEENrNKxCdw&t=2330s)) 
+* Streaming updates peak at 2000 transactions per second.
+* These are **critical writes** coming from the backend systems.
+* Users log in at a pretty good rate throughout the day, with 12 reads per second on various access patterns. The one that’s really hammering them is the streaming updates.
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/c6813e57-9132-4fc9-9f85-41ce75f9eac1.jpeg)
+84. **Small Streaming Updates**
 
-- ([39:07](https://www.youtube.com/watch?v=eEENrNKxCdw&t=2347s)) 
+* The streaming updates are to small rows of data in the relational databases which back all those services today. These small streaming updates are critical.
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/fb5226fb-8363-4217-b2a6-ddb39618f65c.jpeg)
+- ([39:27](https://www.youtube.com/watch?v=eEENrNKxCdw&t=2367s))
 
-- ([39:27](https://www.youtube.com/watch?v=eEENrNKxCdw&t=2367s)) 
+![img](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/c9f67ca8-d0ac-4a0a-b2c2-8cae24091b4d.jpeg)
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/c9f67ca8-d0ac-4a0a-b2c2-8cae24091b4d.jpeg)
+## Usage pattern analysis
 
-- ([39:43](https://www.youtube.com/watch?v=eEENrNKxCdw&t=2383s)) 
+85. **Portal Use Case**
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/692e6b0c-cc60-4e6f-bfc7-e172e427f70b.jpeg)
+* The use case is a portal with a standard navigation pane on the left,
+* some summary data about open messages or claims, and
+* detailed information in the center.
+* As users navigate through various objects, they’ll open up details of those various artifacts.
 
-- ([39:57](https://www.youtube.com/watch?v=eEENrNKxCdw&t=2397s)) 
+- ([39:57](https://www.youtube.com/watch?v=eEENrNKxCdw&t=2397s))
 
 ![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/9cb2716d-12be-4af5-be93-94e39adfdc4c.jpeg)
 
-- ([40:19](https://www.youtube.com/watch?v=eEENrNKxCdw&t=2419s)) 
+- ([40:19](https://www.youtube.com/watch?v=eEENrNKxCdw&t=2419s))
 
 ![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/e9b90ad5-5f6f-46e0-a5e8-d3b475bfd5e8.jpeg)
 
-- ([40:37](https://www.youtube.com/watch?v=eEENrNKxCdw&t=2437s)) 
+## Domain model analysis
+
+
+86. **Understanding the Data Model**
+
+* The next step is to understand the data model. In this case, it’s a *straightforward hierarchical data model* where customers have policies, claims, invoices, documents, and messages. There are no many-to-many relationships here.
+* . I see these types of hierarchical schema, these are very easily represented in NoSQL databases.
+
+- ([40:37](https://www.youtube.com/watch?v=eEENrNKxCdw&t=2437s))
 
 ![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/86d6cd91-284b-42ab-9779-92799532a00d.jpeg)
 
-- ([40:57](https://www.youtube.com/watch?v=eEENrNKxCdw&t=2457s)) 
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/bf3b5199-9d8d-476c-a6d3-3e86a56827fe.jpeg)
+87. **Applying the Patterns**
 
-- ([41:16](https://www.youtube.com/watch?v=eEENrNKxCdw&t=2476s)) 
+* The process of applying the patterns is a trade-off between simplicity and performance. If updates are coming in at 2000 transactions per second, it’s important to ensure these updates are happening efficiently.
+  * if I have one large document for all the user data, then eventually that's gonna create a very large document with lots of arrays of embedded sub documents.
+  * And as each one of those policies, updates or message comes in on a claim, **I'm gonna be reading the entire customer document to write that message right back into it.** This is the **most common mistake that you see in NoSQL databases.**
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/2bf445cb-af42-41ac-baac-7c62989fdeed.jpeg)
+88. **Document Sizes**
 
-- ([41:37](https://www.youtube.com/watch?v=eEENrNKxCdw&t=2497s)) 
+* **It’s better to keep document sizes pretty close to the row size, especially when there are high velocity updates coming in randomly across the schema.** Small documents, in the four to 10 kilobyte range, are preferred.
+* if you're using the 16 megabyte document in MongoDB, let's talk cuz there's something wrong and you're probably paying a lot of money to do something that is really bad, right? Even over a couple hundred kilobytes, anything I like to see small documents, right? Really small documents like in the four to 10 kilobyte range.
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/ff6fa974-984c-43e4-8371-6b8db143baa9.jpeg)
+- ([41:16](https://www.youtube.com/watch?v=eEENrNKxCdw&t=2476s))
 
-- ([42:07](https://www.youtube.com/watch?v=eEENrNKxCdw&t=2527s)) 
+![img](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/2bf445cb-af42-41ac-baac-7c62989fdeed.jpeg)
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/d7f1bcce-087a-44d9-87f0-15222b7fdc9f.jpeg)
+- ([42:26](https://www.youtube.com/watch?v=eEENrNKxCdw&t=2546s))
 
-- ([42:26](https://www.youtube.com/watch?v=eEENrNKxCdw&t=2546s)) 
+![img](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/df157a92-5ba5-47a7-8a4a-d570fead4192.jpeg)
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/df157a92-5ba5-47a7-8a4a-d570fead4192.jpeg)
 
-- ([42:50](https://www.youtube.com/watch?v=eEENrNKxCdw&t=2570s)) 
+# Extended Reference Pattern
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/56afd62d-190b-4881-af93-04c23d866afc.jpeg)
+89. **Extended Reference Pattern**
 
-- ([43:08](https://www.youtube.com/watch?v=eEENrNKxCdw&t=2588s)) 
+* The extended reference pattern is used where a reference of one document from one document is kept in another.
+* This allows for efficient querying of documents that are related to each other to support those patterns much better.
+  * The model I showed you earlier, we created **target arrays of pointers,** right?
+  * Those pointers were essentially references between the documents.
+  * **We index those references, essentially we execute the JOIN without having to have incur the time complexity.**
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/eb32e315-6f7c-46e2-9dfe-70659631ff81.jpeg)
+90. **De-normalizing immutable Data**
 
-- ([43:26](https://www.youtube.com/watch?v=eEENrNKxCdw&t=2606s)) 
+* ***De-normalizing mutable data is not preferred. However, if it’s immutable data and it makes it easier to model, then it’s acceptable since storage is cheap.***
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/3cb034c1-448e-45c0-b648-bdcd14c5e431.jpeg)
+91. **$lookup Operator**
 
-- ([43:50](https://www.youtube.com/watch?v=eEENrNKxCdw&t=2630s)) 
+* The $lookup operator, which is a JOIN operator, is provided but **should only be used when necessary.** It’s **for those infrequent patterns,** like needing an **hourly report** across multiple collections.
+* I need to run that report a thousand times a second.you're not gonna need $lookup and so, and you don't wanna run that, right?
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/0b9b2034-9278-499a-a4bc-9493fec1fd4b.jpeg)
+92. **One Read is Faster Than Many**
 
-- ([44:09](https://www.youtube.com/watch?v=eEENrNKxCdw&t=2649s)) 
+* Always remember that one read is faster than many. The overhead of establishing the cursor on a table is where most of the system’s overhead comes in.
+* **If you can query one index instead of five, you’re reducing the system’s overhead by orders of magnitude.**
+  * I just put all those objects on multiple tables and index on, you know, order ID, right? And I can have ships, invoices and payments and I'll query everything at the same time, right
+* 90% of the overhead a system incurs in processing a request is handling it, **(marshaling the data and pushing it up is nothing).** **Opening a cursor on a table is expensive, returning a couple extra rows or a couple extra documents from that collection is negligible overhead.**
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/75590aef-eb1a-4d26-9951-5ba2593dfd74.jpeg)
+- **([43:08](https://www.youtube.com/watch?v=eEENrNKxCdw&t=2588s))**
 
-- ([44:29](https://www.youtube.com/watch?v=eEENrNKxCdw&t=2669s)) 
+![img](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/eb32e315-6f7c-46e2-9dfe-70659631ff81.jpeg)
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/d825b85d-025e-46be-8402-a7a964c4b163.jpeg)
+# Underbar ID and Key overloading
 
-- ([44:52](https://www.youtube.com/watch?v=eEENrNKxCdw&t=2692s)) 
+93. **Hierarchical Document Structure**
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/a828b55e-bf80-4333-bbcd-4f41ad8387b4.jpeg)
+* The document structure is again, a hierarchical structure.
 
-- ([45:11](https://www.youtube.com/watch?v=eEENrNKxCdw&t=2711s)) 
+94. **Pushing Data into a Single Collection**
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/208b7ce8-2376-430b-8c51-86124bf1333e.jpeg)
+* Pushing data into a single collection or table and querying a single index can dramatically improve throughput, latency, and other factors.
 
-- ([45:26](https://www.youtube.com/watch?v=eEENrNKxCdw&t=2726s)) 
+95. **Key Overloading**
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/412b5c47-0838-49d8-a90d-2d322f17248b.jpeg)
+* A technique called key overloading is demonstrated. This technique is used a lot in DynamoDB and applies just as well to MongoDB.
 
-- ([45:50](https://www.youtube.com/watch?v=eEENrNKxCdw&t=2750s)) 
+96. **Underbar ID**
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/929f1c7a-4551-4dfb-817f-e94bc2d75dda.jpeg)
+* One of the biggest mistakes seen in document databases like MongoDB is not using Underbar ID. **Underbar ID is the default index on every collection in MongoDB and cannot be turned off.** Every write is going to touch that index.
+* They'll let the database automatically assign a value to it because that's the primary key, right? And it identifies the uniqueness of the document. But then you'll never have an access pattern says get this document by ID, right?
 
-- ([46:07](https://www.youtube.com/watch?v=eEENrNKxCdw&t=2767s)) 
+97. **Write Only Index**
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/423ca35b-5cdb-4699-a383-202e1c278fc3.jpeg)
+* ***If Underbar ID is not being queried, then it’s a dead index, a write-only index. It’s a wasted resource on the server.***
 
-- ([46:26](https://www.youtube.com/watch?v=eEENrNKxCdw&t=2786s)) 
+98. **Using Underbar ID in Multiple Ways**
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/f364d1b6-e979-4fe9-8749-33681c57deed.jpeg)
+* In this case, Underbar ID is used in multiple ways.
+  * I'm gonna use more human readable data here, and then I'm gonna prefix the keys of the rest of the hierarchy to create a path that I can query down, right?
+  * To get the subsets of documents that are interesting to me, right? If I want the whole history of a customer, I say, starts with C1, brings back everything the customer has.
+  * I want just the policy data select by C1 Underbar, P1, where it begins with C1, Underbar, P1. It brings back all of the data that is associated to the policy if it's, you know, so on and so forth.
+  * I want messages for a given policy, starts with C1, P1, M1 brings back the messages sub, you know, subset or sub document from this array of documents.
 
-- ([46:45](https://www.youtube.com/watch?v=eEENrNKxCdw&t=2805s)) 
+99. **Creating a Path on Underbar ID**
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/1e99d6b4-9ada-49ee-b2d5-b2617711565f.jpeg)
+* A path is created on Underbar ID using key prefixing **so that groups of these documents can be selected using a starts with condition on that key.**
+  * I can pull the whole hierarchy easily with, starts with C1 and get everything and so on and so forth down the path.
+* This essentially allows **almost every access pattern to be supported with one index, the default index on this particular collection.** This makes the data structure as efficient as possible.
 
-- ([47:00](https://www.youtube.com/watch?v=eEENrNKxCdw&t=2820s)) 
-
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/a2666c2d-ad98-4b71-8115-0953c029f171.jpeg)
-
-- ([47:27](https://www.youtube.com/watch?v=eEENrNKxCdw&t=2847s)) 
-
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/57145130-bfad-4be5-8d79-1e80a1129774.jpeg)
-
-- ([47:47](https://www.youtube.com/watch?v=eEENrNKxCdw&t=2867s)) 
+- ([47:47](https://www.youtube.com/watch?v=eEENrNKxCdw&t=2867s))
 
 ![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/e2bb3bc6-1f8e-4612-98de-10ac1e07bee1.jpeg)
 
-- ([48:18](https://www.youtube.com/watch?v=eEENrNKxCdw&t=2898s)) 
+# Outlier Pattern
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/0d95829d-64d9-4a84-8c1f-1e39083a0f95.jpeg)
+100. **Outlier Pattern**
 
-- ([48:39](https://www.youtube.com/watch?v=eEENrNKxCdw&t=2919s)) 
+* This pattern is used when data objects grow over time and sometimes become too large, such as messages.
+* **If the data needs to overflow across multiple documents to prevent the write cost from becoming too high, this pattern is used.**
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/3362b02b-bf40-4241-a210-0160d22094e4.jpeg)
+101. **Building an Array of Messages**
 
-- ([48:56](https://www.youtube.com/watch?v=eEENrNKxCdw&t=2936s)) 
+* If you think about what happens when messages come in, if I have a document that, you know, some customers might be really chatty and others not so much
+* When messages come in, an array of messages is built in the messages document.
+* At some point, that array becomes large enough that it becomes painful and too expensive to update.
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/244550fb-0562-49ca-a776-04e2daf77295.jpeg)
+- ([48:18](https://www.youtube.com/watch?v=eEENrNKxCdw&t=2898s))
 
-- ([49:21](https://www.youtube.com/watch?v=eEENrNKxCdw&t=2961s)) 
+![img](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/0d95829d-64d9-4a84-8c1f-1e39083a0f95.jpeg)
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/8d9738ac-1e44-46c5-a506-d31f20fab925.jpeg)
+102. **Breaking Up the Document**
 
-- ([49:40](https://www.youtube.com/watch?v=eEENrNKxCdw&t=2980s)) 
+* When the array becomes too large, the document might need to be broken up.
+* If the average customer talks 60 messages or less and the **whales are talking more than that, then the whales are going to get multiple message buckets.**
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/76a3a43c-d423-4d62-8ec0-6fae3d165d9b.jpeg)
+103. **Creating a Pattern for Outliers**
 
-- ([50:04](https://www.youtube.com/watch?v=eEENrNKxCdw&t=3004s)) 
+* A pattern is created where those outliers essentially have more than one message document and they end up with C1_P1_M1, C1_P1_M2. This pattern helps manage large amounts of data more efficiently.
+* it's gonna **gimme the most current document depending on which way the index is sorted**.
+* And you know, as there's always a way to get the list of those current messages, but **each message update is only gonna cost me a minimum unit of cost.**
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/1c6360cd-a564-422f-8652-3ee1fc4e28f2.jpeg)
+- ([49:12](https://www.youtube.com/watch?v=eEENrNKxCdw&t=2952s))
 
-- ([50:27](https://www.youtube.com/watch?v=eEENrNKxCdw&t=3027s)) 
+![img](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/8fa0a429-18bf-4dc8-b517-ffd49c785ba0.jpeg)
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/8d0c2459-c949-4294-a26d-d2174000466f.jpeg)
+- ([49:21](https://www.youtube.com/watch?v=eEENrNKxCdw&t=2961s))
 
-- ([50:44](https://www.youtube.com/watch?v=eEENrNKxCdw&t=3044s)) 
+![img](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/8d9738ac-1e44-46c5-a506-d31f20fab925.jpeg)
 
-![](https://nc-cdn.oss-us-west-1.aliyuncs.com/denote/ytnoteext/9e3ba21b-d5d1-44ba-bfa3-48c696e014d4.jpeg)
+# Document Databases Cost
 
-- ([51:02](https://www.youtube.com/watch?v=eEENrNKxCdw&t=3062s)) 
+104. **Understanding Document Databases Cost**
+
+* One of the most critical things to understand in document databases and NoSQL databases in general is the minimum unit of cost. It’s important to know how much it costs to write into the database and what minimum size of document is needed to avoid extra cost.
+
+105. **Comparison of DynamoDB and MongoDB sot**
+
+* In the shopping cart scenario with DynamoDB, it’s merciless with **one kilobyte equating to one WCU and no data compression.** MongoDB, on the other hand, has four kilobyte blocks in the storage engine for wired tiger and **offers compression**. With mixed binary text data, the **minimum unit of cost is about 16 kilobytes.**
+
+106. **Efficiency of Writes and Document Size**
+
+* **Depending on the access pattern, there might be reasons to use really small documents.** The goal is to ensure that writes are as efficient as possible. In MongoDB, documents in the range of 16 kilobytes are considered.
+
+107. **Compression Ratios and IOPs**
+
+* **With full text data, better compression ratios might be achieved.**
+* However, when building documents, crossing a certain line will cost two IOPs.
+* If the access pattern needs it, that’s fine. If not, it’s a waste of space and capacity.
+
+# Conclusion
+
+108. **NoSQL and Non-Relational Data**
+
+* **NoSQL does not mean non-relational data.**
+* **The ERD still matters** and **data still needs to be modeled.**
+* The relational database is done and cannot escape time complexity.
+
+109. **Scaling of Relational Databases**
+
+* Some people say the relational databases scale just fine. They can be made to “fly” by adding time complexity, distributed cross commits, Paxos, etc. Reducing queries to O(log(N)) will reduce the amount of infrastructure needed.
+  * Anything will fly. Okay? Seriously give enough velocity, a brick will fly. Hey, that's how they fixed the space shuttle, right?
+
+110. **Database Infrastructure Costs**
+
+* Database infrastructure is the number one cost in the enterprise today because the relational database is a waste.
+* NoSQL is a great fit for most OLTP workloads and also for OAP these days with SQL read APIs.
